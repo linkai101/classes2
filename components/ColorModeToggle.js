@@ -1,16 +1,11 @@
 import React from 'react';
-import { useColorMode, IconButton } from '@chakra-ui/react';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons'
+import { useColorMode, Box, Switch } from '@chakra-ui/react';
 
 export default function ColorModeToggle(props) {
   const { ...rest } = props;
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <IconButton
-      icon={colorMode === 'light' ? <SunIcon/> : <MoonIcon/>}
-      onClick={toggleColorMode}
-      {...rest}
-    />
+    <Switch isChecked={colorMode === 'dark'} onChange={toggleColorMode} {...rest}/>
   )
 }

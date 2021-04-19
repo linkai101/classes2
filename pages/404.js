@@ -1,4 +1,6 @@
 import React from 'react';
+import Head from 'next/head';
+import config from '../config';
 
 import {
   Box,
@@ -6,26 +8,33 @@ import {
   Heading,
   Text,
   Link,
-  Button,
   useColorModeValue,
 } from '@chakra-ui/react';
 
+import Button from '../components/Button';
+import Footer from '../components/Footer';
+
 export default function Custom404() {
   return (
-    <Flex 
-      minH="100vh" align="center" justify="center" 
-      bg={useColorModeValue("default.primary", "default.primaryDark")}
-    >
-      <Box align="center">
-        <Heading as="h1" size="2xl">404!</Heading>
-        <Text fontSize="lg" m={1}>Sorry, that page isn't here.</Text>
-        <Link href="/" style={{ textDecoration: "none" }}>
-          <Button 
-            colorScheme="whiteAlpha" color={useColorModeValue("default.text", "default.textDark")} 
-            mt={2}
-          >📚 Back to Studying!</Button>
-        </Link>
-      </Box>
-    </Flex>
+    <>
+      <Head>
+        <title>404!{config.titleSuffix}</title>
+      </Head>
+      
+      <Flex 
+        minH="95vh" align="center" justify="center" 
+        bg={useColorModeValue("default.primary", "default.primaryDark")}
+      >
+        <Box align="center">
+          <Heading as="h1" size="2xl">404!</Heading>
+          <Text fontSize="lg" m={1} mb={4}>Sorry, that page isn't here.</Text>
+          <Link href="/" style={{ textDecoration: "none" }}>
+            <Button>📚 Back to Studying!</Button>
+          </Link>
+        </Box>
+      </Flex>
+
+      <Footer minH="5vh" bg={useColorModeValue("default.primary", "default.primaryDark")}/>
+    </>
   );
 }

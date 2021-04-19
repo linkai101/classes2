@@ -1,6 +1,7 @@
 import '../styles/globals.css';
 import Head from 'next/head';
 import { ChakraProvider } from "@chakra-ui/react";
+import { AuthProvider } from "../lib/auth";
 import theme from '../lib/theme';
 import config from '../config';
 
@@ -13,7 +14,9 @@ function MyApp({ Component, pageProps }) {
       </Head>
       
       <ChakraProvider theme={theme} resetCSS>
-        <Component {...pageProps} />
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ChakraProvider>
     </>
   );
