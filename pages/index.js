@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 
 import {
   Container,
@@ -8,6 +7,7 @@ import {
   Stack,
   Heading,
   Text,
+  Image,
   useColorModeValue,
   useToast,
   Fade,
@@ -66,9 +66,7 @@ export default function Home() {
 
           <Flex flex={3} direction={{ base: "column-reverse", lg: "row" }}>
             <Flex flex={2} justify="center" align="center" p={8}>
-              <Box position="relative" w="80%" h="80%" minH="256px">
-                <Image src="/images/studying.png" alt="Study Space" layout="fill" objectFit="contain" priority/>
-              </Box>
+              <Image src="/images/studying.png" alt="Study Space" w="80%" maxW="400px"/>
             </Flex>
 
             <Flex flex={1} justify="center" align="center">

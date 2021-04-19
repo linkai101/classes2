@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
@@ -8,6 +7,7 @@ import {
   Stack,
   Heading,
   Text,
+  Image,
   Link,
   Button as ChakraButton,
   Code,
@@ -48,9 +48,7 @@ export default function ClassList({ data, ...rest }) {
             <Heading size="md">Welcome to your personal study space!</Heading>
             <Text>Click on <Code>Edit Classes</Code> on the left to get started.</Text>
 
-            <Box position="relative" w="90%" h="200px" my={4}>
-              <Image src="/images/room.jpg" alt="Room" layout="fill" objectFit="contain" priority/>
-            </Box>
+            <Image src="/images/room.jpg" alt="Room" w="80%" maxW="400px" my={4}/>
           </Box>
         }
       </Stack>
