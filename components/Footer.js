@@ -6,23 +6,46 @@ import {
   Box,
   Text,
   Link,
+  Button,
+  useColorModeValue,
 } from '@chakra-ui/react';
 
-import ColorModeToggle from '../components/ColorModeToggle';
+import initFirebase from '../lib/firebase';
+import firebase from 'firebase/app';
+import { useAuth } from '../lib/auth';
+import 'firebase/firestore';
 
-const packageJson = require('../package.json');
+import ColorModeToggle from './ColorModeToggle';
 
 export default function Footer({ ...rest }) {
+  initFirebase();
+  const { user, loadingUser } = useAuth();
+
+  async function signOut() {
+    await firebase.auth().signOut();
+  }
+
   return (
     <Container maxW="container.xl" {...rest}>
-      <Flex direction="row">
-        <Box flex={1} align="left">
-          <Text>v{packageJson.version} ~ by <Link href="https://linkaiwu.com" fontWeight="bold" isExternal>Linkai Wu</Link></Text>
+      <Flex direction={{ base: "column", lg: "row" }}>
+        <Box flex={1}>
+          {!loadingUser && user &&
+            <>
+              <Text as="span" mr={2}>signed in as: {user.email}</Text>
+              <Link onClick={signOut} color={useColorModeValue("blue.500", "blue.300")}>sign out</Link>
+            </>
+          }
         </Box>
         <Box flex={1} align="right">
           <Text as="span" mr={2}>dark mode</Text><ColorModeToggle/>
           <Text as="span" ml={6}>note: all data will be reset on v1.0 release</Text>
-          {/* <Text as="span" ml={6}>inspired by <Link href="https://imissmycafe.com" fontWeight="bold" isExternal>imissmycafe</Link></Text> */}
+          {/* <Text as="span" ml={6} mr={2}>
+            <Link href="/terms" fontWeight="bold" isExternal>terms</Link>
+          </Text>
+          ~
+          <Text as="span" ml={2}>
+            <Link href="/privacy" fontWeight="bold" isExternal>privacy</Link>
+        </Text> */}
         </Box>
       </Flex>
     </Container>

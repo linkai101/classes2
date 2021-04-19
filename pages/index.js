@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 import {
   Container,
@@ -7,9 +8,9 @@ import {
   Stack,
   Heading,
   Text,
-  Image,
   useColorModeValue,
   useToast,
+  Fade,
 } from '@chakra-ui/react';
 
 import initFirebase from '../lib/firebase';
@@ -52,6 +53,7 @@ export default function Home() {
   return (
     <Box bg={useColorModeValue("default.primary", "default.primaryDark")}>
       <Container maxW="container.xl">
+        <Fade in={true}>
         <Flex direction={{ base: "column", lg: "row"}} minH="95vh">
           <Flex flex={1} justify="center" align="center">
             <Box w="100%" pt={{ base: 16, lg: 0 }} px={8} textAlign={{ base: "center", lg: "left" }}>
@@ -64,7 +66,9 @@ export default function Home() {
 
           <Flex flex={3} direction={{ base: "column-reverse", lg: "row" }}>
             <Flex flex={2} justify="center" align="center" p={8}>
-              <Image src="/images/studying.png" w="80%"/>
+              <Box position="relative" w="80%" h="80%" minH="256px">
+                <Image src="/images/studying.png" alt="Study Space" layout="fill" objectFit="contain" priority/>
+              </Box>
             </Flex>
 
             <Flex flex={1} justify="center" align="center">
@@ -76,6 +80,7 @@ export default function Home() {
             </Flex>
           </Flex>
         </Flex>
+        </Fade>
 
         <Footer minH="5vh"/>
       </Container>

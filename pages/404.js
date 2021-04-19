@@ -9,6 +9,7 @@ import {
   Text,
   Link,
   useColorModeValue,
+  Fade,
 } from '@chakra-ui/react';
 
 import Button from '../components/Button';
@@ -21,17 +22,20 @@ export default function Custom404() {
         <title>404!{config.titleSuffix}</title>
       </Head>
       
+      
       <Flex 
         minH="95vh" align="center" justify="center" 
         bg={useColorModeValue("default.primary", "default.primaryDark")}
       >
-        <Box align="center">
-          <Heading as="h1" size="2xl">404!</Heading>
-          <Text fontSize="lg" m={1} mb={4}>Sorry, that page isn't here.</Text>
-          <Link href="/" style={{ textDecoration: "none" }}>
-            <Button>📚 Back to Studying!</Button>
-          </Link>
-        </Box>
+        <Fade in={true}>
+          <Box align="center">
+            <Heading as="h1" size="2xl">404!</Heading>
+            <Text fontSize="lg" m={1} mb={4}>Sorry, that page isn't here.</Text>
+            <Link href="/" style={{ textDecoration: "none" }}>
+              <Button>📚 Back to Studying!</Button>
+            </Link>
+          </Box>
+        </Fade>
       </Flex>
 
       <Footer minH="5vh" bg={useColorModeValue("default.primary", "default.primaryDark")}/>
