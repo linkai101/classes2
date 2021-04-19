@@ -29,12 +29,12 @@ export default function ClassList({ data, ...rest }) {
               <Box pl={1}>{c.name}</Box>
               <Box flex={1} align="right">
                 {c.meetingURL && 
-                  <Link href={c.meetingURL} style={{ textDecoration: "none" }}>
+                  <Link href={c.meetingURL} style={{ textDecoration: "none" }} isExternal>
                     <ChakraButton size="xs" colorScheme="orange" mr={2}>Meeting</ChakraButton>
                   </Link>
                 }
                 {c.assignmentsURL && 
-                  <Link href={c.assignmentsURL} style={{ textDecoration: "none" }}>
+                  <Link href={c.assignmentsURL} style={{ textDecoration: "none" }} isExternal>
                     <ChakraButton size="xs" colorScheme="orange">Assignments</ChakraButton>
                   </Link>
                 }
@@ -57,9 +57,13 @@ export default function ClassList({ data, ...rest }) {
 }
 
 function getTextColor(bgHex) {
-  if ((hexToRgb(bgHex).r*0.299 + hexToRgb(bgHex).g*0.587 + hexToRgb(bgHex).b*0.114) > 186)
-    return "default.text";
-  return "default.textDark";
+  try {
+    if ((hexToRgb(bgHex).r*0.299 + hexToRgb(bgHex).g*0.587 + hexToRgb(bgHex).b*0.114) > 186)
+      return "default.text";
+    return "default.textDark";
+  } catch (err) {
+    return "auto";
+  }
 }
 
 function hexToRgb(hex) {
