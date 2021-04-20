@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { parseDomain } from "parse-domain";
 
 import {
   Flex,
@@ -28,14 +29,18 @@ export default function ClassList({ data, ...rest }) {
             >
               <Box pl={1}>{c.name}</Box>
               <Box flex={1} align="right">
-                {c.meetingURL && 
-                  <Link href={c.meetingURL} style={{ textDecoration: "none" }} isExternal>
-                    <ChakraButton size="xs" colorScheme="orange" mr={2}>Meeting</ChakraButton>
+                {c.link1 && 
+                  <Link href={c.link1} style={{ textDecoration: "none" }} isExternal>
+                    <ChakraButton size="xs" colorScheme="orange" mr={2}>
+                      {getDomain(c.link1)}
+                    </ChakraButton>
                   </Link>
                 }
-                {c.assignmentsURL && 
-                  <Link href={c.assignmentsURL} style={{ textDecoration: "none" }} isExternal>
-                    <ChakraButton size="xs" colorScheme="orange">Assignments</ChakraButton>
+                {c.link2 && 
+                  <Link href={c.link2} style={{ textDecoration: "none" }} isExternal>
+                    <ChakraButton size="xs" colorScheme="orange">
+                      {getDomain(c.link2)}
+                    </ChakraButton>
                   </Link>
                 }
               </Box>
@@ -73,4 +78,11 @@ function hexToRgb(hex) {
     g: parseInt(result[2], 16),
     b: parseInt(result[3], 16)
   } : null;
+}
+
+function getDomain(url) {
+  const parsedDomain = parseDomain((new URL(url)).hostname);
+  if (parsedDomain.domain === 'google' && parsedDomain.subDomains.length > 0)
+    return parsedDomain.subDomains[parsedDomain.subDomains.length-1]; 
+  return parsedDomain.domain;
 }

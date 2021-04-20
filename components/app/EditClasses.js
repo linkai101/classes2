@@ -34,7 +34,7 @@ export default function EditClasses({ showClassesModal, setShowClassesModal, dat
   }
 
   function newClass() {
-    setClassesDraft([...classesDraft, { name: "", description: "", color: "", meetingURL: "", assignmentsURL: "", id: uuidv4() }]);
+    setClassesDraft([...classesDraft, { name: "", description: "", color: "", link1: "", link2: "", id: uuidv4() }]);
   }
 
   function deleteClass(id) {
@@ -48,20 +48,22 @@ export default function EditClasses({ showClassesModal, setShowClassesModal, dat
         name: (id === c.id && key === "name") ? value : c.name,
         description: (id === c.id && key === "description") ? value : c.description,
         color: (id === c.id && key === "color") ? value : c.color ,
-        meetingURL: (id === c.id && key === "meetingURL") ? value : c.meetingURL,
-        assignmentsURL: (id === c.id && key === "assignmentsURL") ? value : c.assignmentsURL,
+        link1: (id === c.id && key === "link1") ? value : c.link1,
+        link2: (id === c.id && key === "link2") ? value : c.link2,
       }
     )));
   }
 
   async function save() {
-    const newClasses = classesDraft.map(c => ({ name: c.name, description: c.description, color: c.color, meetingURL: c.meetingURL, assignmentsURL: c.assignmentsURL }));
+    const newClasses = classesDraft.map(c => ({ name: c.name, description: c.description, color: c.color, link1: c.link1, link2: c.link2 }));
 
     // if nothing is changed
     if (data?.classes === newClasses) return setShowClassesModal(false);
 
     // update db
-    const res = await updateData(data?.id, { ...data, classes: newClasses });
+    const newData = { ...data, classes: newClasses };
+    delete newData.id;
+    const res = await updateData(data?.id, newData);
 
     // Error
     if (res?.error) {
@@ -98,8 +100,8 @@ export default function EditClasses({ showClassesModal, setShowClassesModal, dat
                 <Input type="text" size="sm" placeholder="Name" value={c.name} onChange={e => handleFieldChange(c.id, "name", e.target.value)}/>
                 <Input type="text" size="sm" placeholder="Description" value={c.description} onChange={e => handleFieldChange(c.id, "description", e.target.value)}/>
                 <Input type="text" size="sm" placeholder="Color" value={c.color} onChange={e => handleFieldChange(c.id, "color", e.target.value)}/>
-                <Input type="text" size="sm" placeholder="Meeting URL" value={c.meetingURL} onChange={e => handleFieldChange(c.id, "meetingURL", e.target.value)}/>
-                <Input type="text" size="sm" placeholder="Assignments URL" value={c.assignmentsURL} onChange={e => handleFieldChange(c.id, "assignmentsURL", e.target.value)}/>
+                <Input type="text" size="sm" placeholder="Link 1" value={c.link1} onChange={e => handleFieldChange(c.id, "link1", e.target.value)}/>
+                <Input type="text" size="sm" placeholder="Link 2" value={c.link2} onChange={e => handleFieldChange(c.id, "link2", e.target.value)}/>
                 <ChakraButton size="sm" colorScheme="blackAlpha" color="white" onClick={() => deleteClass(c.id)}>X</ChakraButton>
               </Stack>
             </Box>
