@@ -27,8 +27,11 @@ export default function ClassList({ data, ...rest }) {
               bg={c.color || useColorModeValue("default.secondary", "default.secondaryDark")}
               color={c.color ? getTextColor(c.color) : "auto"}
             >
-              <Box pl={1}>{c.name}</Box>
-              <Box flex={1} align="right">
+              <Box flex={1} px={1} align="left">
+                <Text>{c.name}</Text>
+                <Text fontSize="sm">{c.description}</Text>
+              </Box>
+              <Box align="right">
                 {c.link1 && 
                   <Link href={c.link1} style={{ textDecoration: "none" }} isExternal>
                     <ChakraButton size="xs" colorScheme="orange" mr={2}>

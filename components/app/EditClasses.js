@@ -8,6 +8,7 @@ import {
   Box,
   Stack,
   Button as ChakraButton,
+  IconButton,
   Code,
   Input,
   Modal,
@@ -19,6 +20,9 @@ import {
   useColorModeValue,
   useToast,
 } from '@chakra-ui/react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 export default function EditClasses({ showClassesModal, setShowClassesModal, data, setData }) {
   const toast = useToast();
@@ -58,7 +62,7 @@ export default function EditClasses({ showClassesModal, setShowClassesModal, dat
     const newClasses = classesDraft.map(c => ({ name: c.name, description: c.description, color: c.color, link1: c.link1, link2: c.link2 }));
 
     // if nothing is changed
-    if (data?.classes === newClasses) return setShowClassesModal(false);
+    if (JSON.stringify(data?.classes) === JSON.stringify(newClasses)) return setShowClassesModal(false);
 
     // update db
     const newData = { ...data, classes: newClasses };
@@ -100,9 +104,9 @@ export default function EditClasses({ showClassesModal, setShowClassesModal, dat
                 <Input type="text" size="sm" placeholder="Name" value={c.name} onChange={e => handleFieldChange(c.id, "name", e.target.value)}/>
                 <Input type="text" size="sm" placeholder="Description" value={c.description} onChange={e => handleFieldChange(c.id, "description", e.target.value)}/>
                 <Input type="text" size="sm" placeholder="Color" value={c.color} onChange={e => handleFieldChange(c.id, "color", e.target.value)}/>
-                <Input type="text" size="sm" placeholder="Link 1" value={c.link1} onChange={e => handleFieldChange(c.id, "link1", e.target.value)}/>
-                <Input type="text" size="sm" placeholder="Link 2" value={c.link2} onChange={e => handleFieldChange(c.id, "link2", e.target.value)}/>
-                <ChakraButton size="sm" colorScheme="blackAlpha" color="white" onClick={() => deleteClass(c.id)}>X</ChakraButton>
+                <Input type="text" size="sm" placeholder="URL 1" value={c.link1} onChange={e => handleFieldChange(c.id, "link1", e.target.value)}/>
+                <Input type="text" size="sm" placeholder="URL 2" value={c.link2} onChange={e => handleFieldChange(c.id, "link2", e.target.value)}/>
+                <IconButton icon={<FontAwesomeIcon icon={faTrash}/>} size="sm" colorScheme="blackAlpha" color="white" onClick={() => deleteClass(c.id)}/>
               </Stack>
             </Box>
           )}

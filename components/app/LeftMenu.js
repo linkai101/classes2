@@ -35,12 +35,10 @@ export default function LeftMenu({ data, setData, ...rest }) {
         </Box>
         
         <Box align="center">
-          <Text>
-            <Link color={useColorModeValue("blue.500", "blue.300")} onClick={() => setShowClassesModal(true)}>Edit Classes</Link>
-          </Text>
+          <Link color={useColorModeValue("blue.500", "blue.300")} onClick={() => setShowClassesModal(true)}>Edit Classes</Link>
         </Box>
 
-        <Box align="center">
+        {/* <Box align="center">
           <Text fontWeight="bold">
             Danger Zone 
             <Link ml={1} fontWeight="normal" 
@@ -56,7 +54,7 @@ export default function LeftMenu({ data, setData, ...rest }) {
               </Text>
             </Box>
           </Collapse>
-        </Box>
+        </Box> */}
       </Stack>
 
       {/* Delete Account Modal */}

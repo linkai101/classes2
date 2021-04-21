@@ -18,12 +18,12 @@ import { useAuth } from '../lib/auth';
 import { getData, updateData } from '../lib/db';
 import 'firebase/firestore';
 
-import Button from '../components/Button';
 import Footer from '../components/Footer';
 import LoadingPage from '../components/LoadingPage';
 import LeftMenu from '../components/app/LeftMenu';
 import Clock from '../components/app/Clock';
-import ClassList from '..//components/app/ClassList';
+import ClassList from '../components/app/ClassList';
+import Todo from '../components/app/Todo'
 
 export default function Home() {
   initFirebase();
@@ -60,8 +60,8 @@ export default function Home() {
           <Fade in={true}>
             <Flex direction={{ base: "column", lg: "row" }} minH="95vh">
               <Flex flex={3} direction={{ base: "column-reverse", lg: "row" }}>
-                <Flex flex={1} direction="column" justify="center">
-                  <LeftMenu mx={8} pb={12} data={data} setData={setData}/>
+                <Flex flex={1} direction="column" justify="center" p={4}>
+                  <LeftMenu mx={8} data={data} setData={setData}/>
                 </Flex>
 
                 <Flex flex={2} direction="column" justify="center" p={4}>
@@ -75,11 +75,15 @@ export default function Home() {
                 </Flex>
               </Flex>
 
-              <Box flex={1}></Box>
+              <Flex flex={1} direction="column" justify="center" p={4}>
+                <Box my={4} align="center">
+                  <Todo data={data} setData={setData}/>
+                </Box>
+              </Flex>
             </Flex>
           </Fade>
 
-          <Footer minH="5vh"/>
+          <Footer minH="5vh" mt={{ base: 4, lg: 0 }}/>
         </Container>
       </Box>
     </>

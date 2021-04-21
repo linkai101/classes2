@@ -18,7 +18,7 @@ export default function Clock({ ...rest }) {
   const [time, setTime] = React.useState(new Date());
 
   React.useEffect(() => {
-    let timeInterval = setInterval(() => setTime(new Date()), 1000);
+    var timeInterval = setInterval(() => setTime(new Date()), 1000);
     return () => {
       clearTimeout(timeInterval);
     }

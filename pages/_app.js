@@ -1,4 +1,5 @@
 import '../styles/globals.css';
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import Head from 'next/head';
 import { ChakraProvider } from "@chakra-ui/react";
 import { AuthProvider } from "../lib/auth";
