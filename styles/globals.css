@@ -16,3 +16,11 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.hideScrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+.hideScrollbar::-webkit-scrollbar {
+  display: none;
+}

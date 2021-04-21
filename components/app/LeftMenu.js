@@ -5,6 +5,7 @@ import {
   Stack,
   Text,
   Link,
+  Button as ChakraButton,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -35,7 +36,14 @@ export default function LeftMenu({ data, setData, ...rest }) {
         </Box>
         
         <Box align="center">
-          <Link color={useColorModeValue("blue.500", "blue.300")} onClick={() => setShowClassesModal(true)}>Edit Classes</Link>
+          <Link 
+            color={useColorModeValue("blue.500", "blue.300")} style={{ textDecoration: "none" }}
+            onClick={() => setShowClassesModal(true)}
+          >
+            <ChakraButton size="sm" colorScheme="blackAlpha" color="white">
+              Edit Classes
+            </ChakraButton>
+          </Link>
         </Box>
 
         {/* <Box align="center">

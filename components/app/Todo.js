@@ -91,14 +91,14 @@ export default function Todo({ data, setData, ...rest }) {
 
   // Add new todo
   function addTodo() {
-    setTodoDraft([...todoDraft, {
+    setTodoDraft(orderTodos([...todoDraft, {
       id: uuidv4(),
       name: newTodo,
       category: "",
       priority: "none",
       link: "",
       isCompleted: false 
-    }]);
+    }]));
     setNewTodo("");
 
     setUnsaved(true); // UNSAVED
@@ -140,7 +140,7 @@ export default function Todo({ data, setData, ...rest }) {
       <Box {...rest}>
         <Heading as="h2" size="md" align="center" my={2}>Todo</Heading>
 
-        <Stack direction="column" maxW="384px">
+        <Stack direction="column" maxW="384px" maxH="60vh" overflow="auto">
           {todoDraft.map(t => 
             <Flex direction="row"
               py={1} px={2}
@@ -149,14 +149,14 @@ export default function Todo({ data, setData, ...rest }) {
               key={t.id}
             >
               <Checkbox 
-                flex={1} colorScheme="green" align="left" pr={1} 
+                flex={1} colorScheme="blue" align="left" pr={1} 
                 isChecked={t.isCompleted} onChange={e => toggleTodo(t.id, e.target.checked)}
               >
-                <Text as="span" mr={2} color={useColorModeValue("red.500", "red.200")}>
-                  {t.priority === 'low' ? '!' : t.priority === 'medium' ? '!!' : t.priority === 'high' ? '!!!' : ''}
-                </Text>
-                {t.name}
-                {t.category && <Text as="span" ml={2} color={useColorModeValue("gray.500", "gray.200")}>({t.category})</Text>}
+                  <Text as="span" mr={t.priority !== 'none' ? 2 : 0} color={useColorModeValue("red.500", "red.200")}>
+                    {t.priority === 'low' ? '!' : t.priority === 'medium' ? '!!' : t.priority === 'high' ? '!!!' : ''}
+                  </Text>
+                  {t.name}
+                  {t.category && <Text as="span" ml={2} color={useColorModeValue("gray.500", "gray.200")}>({t.category})</Text>}
               </Checkbox>
               
               <Box align="right">

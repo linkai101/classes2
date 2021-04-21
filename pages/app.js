@@ -36,8 +36,8 @@ export default function Home() {
       if (!loadingUser && user) {
         var userData = await getData(user.uid);
         if (!userData) {
-          userData = {};
-          updateData(user.uid, userData);
+          updateData(user.uid, {});
+          userData = { id: user.uid };
         }
         setData(userData);
       }
