@@ -42,7 +42,7 @@ export default function Footer({ ...rest }) {
             <Link href="/about" fontWeight="bold" isExternal>about</Link>
           </Text>
           ~
-          <Text as="span" ml={6} mr={2}>
+          <Text as="span" mx={2}>
             <Link href="/terms" fontWeight="bold" isExternal>terms</Link>
           </Text>
           ~

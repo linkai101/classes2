@@ -159,7 +159,7 @@ export default function Todo({ data, setData, ...rest }) {
                 {t.category && <Text as="span" ml={2} color={useColorModeValue("gray.500", "gray.200")}>({t.category})</Text>}
               </Checkbox>
               
-              <Box>
+              <Box align="right">
                 {t.link && 
                   <Link href={t.link} style={{ textDecoration: "none" }} isExternal>
                     <ChakraButton size="xs" colorScheme="orange">
@@ -167,7 +167,7 @@ export default function Todo({ data, setData, ...rest }) {
                     </ChakraButton>
                   </Link>
                 }
-                <IconButton ml={1} 
+                <IconButton ml={1} align="right" 
                   icon={<FontAwesomeIcon icon={faInfoCircle}/>} 
                   size="xs"
                   colorScheme="blackAlpha" color="white" 
