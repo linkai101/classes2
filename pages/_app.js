@@ -12,6 +12,10 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>{config.titleDefault}</title>
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="description"
+          content="A simple, efficient class and task manager."
+        />
       </Head>
       
       <ChakraProvider theme={theme} resetCSS>
