@@ -38,7 +38,7 @@ export default function Footer({ ...rest }) {
         </Box>
         <Box flex={1} align="right">
           <Text as="span" mr={2}>dark mode</Text><ColorModeToggle/>
-          <Text as="span" ml={6} mr={2}>
+          {/*<Text as="span" ml={6} mr={2}>
             <Link href="/about" fontWeight="bold" isExternal>about</Link>
           </Text>
           ~
@@ -48,7 +48,7 @@ export default function Footer({ ...rest }) {
           ~
           <Text as="span" ml={2}>
             <Link href="/privacy" fontWeight="bold" isExternal>privacy</Link>
-        </Text>
+        </Text> */}
         </Box>
       </Flex>
     </Container>

@@ -27,14 +27,13 @@ export default function EditTodo(props) {
     todoDraft,
     setTodoDraft,
     setUnsaved,
-    defaultTodoDraft,
   } = props;
 
   const [todo, setTodo] = React.useState();
 
   React.useEffect(() => {
     setTodo(todoDraft.find(t => t.id === editTodoCurrent));
-  }, [editTodoCurrent])
+  }, [editTodoCurrent, editTodoOpen])
   
   function close() {
     setEditTodoOpen(false);

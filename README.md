@@ -1,2 +1,2 @@
-# Study Space
-The ultimate essential study tools. Take a seat and get some work done!
+# Classes 2.0
+A simple, efficient class and task manager.

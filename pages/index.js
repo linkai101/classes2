@@ -58,9 +58,9 @@ export default function Home() {
           <Flex flex={1} justify="center" align="center">
             <Box w="100%" pt={{ base: 16, lg: 0 }} px={8} textAlign={{ base: "center", lg: "left" }}>
               <Heading as="h1" size="3xl" lineHeight={.9} fontWeight="extrabold" mb={{ base: 4, lg: 8 }}>
-                Study Space
+                Classes
               </Heading>
-              <Text fontWeight="bold">Take a seat and get some work done.</Text>
+              <Text fontWeight="bold">A simple, efficient class and task manager.</Text>
             </Box>
           </Flex>
 

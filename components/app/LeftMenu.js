@@ -6,6 +6,7 @@ import {
   Text,
   Link,
   Button as ChakraButton,
+  Select,
   Modal,
   ModalOverlay,
   ModalContent,
@@ -14,28 +15,42 @@ import {
   ModalBody,
   ModalCloseButton,
   useColorModeValue,
-  Collapse,
 } from '@chakra-ui/react';
 
-import Button from '../Button';
+//import Button from '../Button';
 import EditClasses from './EditClasses';
 
 export default function LeftMenu({ data, setData, ...rest }) {
-  const [showDangerZone, setShowDangerZone] = React.useState(false);
   const [showDeletionModal, setShowDeletionModal] = React.useState(false);
   const [showClassesModal, setShowClassesModal] = React.useState(false);
 
+  const [site, setSite] = React.useState("https://imissmycafe.com");
 
   return (
     <>
       <Stack direction="column" spacing={4} {...rest}>
-        <Box align="center">
+        {/* <Box align="center">
           <Box maxW="420px">
-            <Button>Start a Study Session</Button>
+            <Link style={{ textDecoration: "none" }} href="/study">
+              <Button>Start a Study Session</Button>
+            </Link>
           </Box>
-        </Box>
+        </Box> */}
         
         <Box align="center">
+          <Select size="sm" value={site} onChange={e => setSite(e.target.value)} my={4}>
+            <option value="">None</option>
+            <option value="https://imissmycafe.com">imissmycafe.com</option>
+            <option value="https://imissmybar.com">imissmybar.com</option>
+            <option value="https://imisstheoffice.eu">imisstheoffice.eu</option>
+            <option value="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1">don't click me</option>
+          </Select>
+          {site &&
+            <Box my={4} h="300px">
+              <iframe src={site} title={site} height="100%"/>
+            </Box>
+          }
+
           <Link 
             color={useColorModeValue("blue.500", "blue.300")} style={{ textDecoration: "none" }}
             onClick={() => setShowClassesModal(true)}

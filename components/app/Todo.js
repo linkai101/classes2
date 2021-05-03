@@ -60,13 +60,13 @@ export default function Todo({ data, setData, ...rest }) {
       var saveTimeout = setTimeout(() => {
         save();
         setUnsaved(false);
-      }, 30000);
+      }, 10000);
     }
   }, [unsaved]);
 
   // Adds temp id to each todo
   function defaultTodoDraft() {
-    return data?.todo?.map(t => ({ ...t, id: uuidv4() })) || [];
+    return orderTodos(data?.todo?.map(t => ({ ...t, id: uuidv4() })) || []);
   }
 
   // Toggle todo item
@@ -140,7 +140,7 @@ export default function Todo({ data, setData, ...rest }) {
       <Box {...rest}>
         <Heading as="h2" size="md" align="center" my={2}>Todo</Heading>
 
-        <Stack direction="column" maxW="384px" maxH="60vh" overflow="auto">
+        <Stack direction="column" maxW="384px" maxH={{ base: "auto", lg: "60vh" }} overflow="auto">
           {todoDraft.map(t => 
             <Flex direction="row"
               py={1} px={2}
@@ -210,7 +210,6 @@ export default function Todo({ data, setData, ...rest }) {
         editTodoCurrent={editTodoCurrent}
         todoDraft={todoDraft} setTodoDraft={setTodoDraft}
         setUnsaved={setUnsaved}
-        defaultTodoDraft={defaultTodoDraft}
       />
     </>
   )

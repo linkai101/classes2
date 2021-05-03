@@ -1,4 +1,4 @@
 export default {
-  titleDefault: "Study Space",
-  titleSuffix: " – Study Space",
+  titleDefault: "Classes",
+  titleSuffix: " – Classes",
 }

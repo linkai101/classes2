@@ -4,16 +4,12 @@ import {
   Container,
   Flex,
   Box,
-  Stack,
-  Heading,
-  Text,
-  Link,
   useColorModeValue,
   Fade,
 } from '@chakra-ui/react';
 
 import initFirebase from '../lib/firebase';
-import firebase from 'firebase/app';
+//import firebase from 'firebase/app';
 import { useAuth } from '../lib/auth';
 import { getData, updateData } from '../lib/db';
 import 'firebase/firestore';
@@ -25,7 +21,7 @@ import Clock from '../components/app/Clock';
 import ClassList from '../components/app/ClassList';
 import Todo from '../components/app/Todo'
 
-export default function Home() {
+export default function App() {
   initFirebase();
   const { user, loadingUser } = useAuth();
   
@@ -45,13 +41,15 @@ export default function Home() {
     fetchUserData();
   }, [user, loadingUser]);
 
-  if (loadingUser || typeof data === 'undefined') return <LoadingPage/>;
+  if (loadingUser) return <LoadingPage/>;
   else { // User loaded
     if (!user) {
       window.location.href = "/";
       return <LoadingPage/>;
     }
   }
+
+  if (typeof data === 'undefined') return <LoadingPage/>;
 
   return (
     <>
@@ -60,7 +58,7 @@ export default function Home() {
           <Fade in={true}>
             <Flex direction={{ base: "column", lg: "row" }} minH="95vh">
               <Flex flex={3} direction={{ base: "column-reverse", lg: "row" }}>
-                <Flex flex={1} direction="column" justify="center" p={4}>
+                <Flex flex={1} direction="column" justify="center" p={4} maxH="100vh">
                   <LeftMenu mx={8} data={data} setData={setData}/>
                 </Flex>
 
@@ -75,7 +73,7 @@ export default function Home() {
                 </Flex>
               </Flex>
 
-              <Flex flex={1} direction="column" justify="center" p={4}>
+              <Flex flex={1} direction="column" justify="center" p={4} maxH="100vh">
                 <Box my={4} align="center">
                   <Todo data={data} setData={setData}/>
                 </Box>
